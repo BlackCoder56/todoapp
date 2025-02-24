@@ -31,6 +31,7 @@
          }
     };  
 </script>
+
 <template>
     <h1>TODO Application</h1>
 
