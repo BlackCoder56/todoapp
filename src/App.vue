@@ -29,8 +29,6 @@
          else{
             tasks.value[index].status = 'Pending';
          }
-
-
     };  
 </script>
 <template>
