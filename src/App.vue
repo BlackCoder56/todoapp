@@ -19,6 +19,19 @@
           tasks.value.splice(index, 1);
     };
 
+    const toggleStatus = (index) => {
+         if(tasks.value[index].status === 'Pending'){
+          tasks.value[index].status = 'Incomplete';
+         }
+         else if(tasks.value[index].status === 'Incomplete'){
+          tasks.value[index].status = 'Complete';
+         }
+         else{
+            tasks.value[index].status = 'Pending';
+         }
+
+
+    };  
 </script>
 <template>
     <h1>TODO Application</h1>
@@ -39,7 +52,7 @@
         <td>{{ task.status }}</td>
         <tr>
           <td>
-          <button id="cs">C:S</button>
+          <button id="cs" @click="toggleStatus(index)">C:S</button>
         </td>
         <td>
           <button id="del" @click="deleteTask(index)">Delete</button>
