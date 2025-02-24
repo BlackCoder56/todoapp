@@ -1,18 +1,26 @@
 <script setup>
     import { ref } from 'vue';
 
-    const tasks = ref([
-      {name:'Apple', status:'Incomplete'},
-      {name:'Apple', status:'compete'},
-      {name:'Apple', status:'Pending'},
-    ]);
+    const tasks = ref([]);
+    
+    const newTask = ref('');
+
+    const addTask = () => {
+          if(newTask.value.trim() !== '')
+          {
+              tasks.value.push(
+                {name:newTask.value, status:'Pending'}
+              );
+              newTask.value = '';
+          }
+    };
 
 </script>
 <template>
     <h1>TODO Application</h1>
 
-    <form @submit.prevent="">
-        <input type="text" name="newTask" placeholder="Enter new Task" />
+    <form @submit.prevent="addTask">
+        <input type="text" name="newTask" placeholder="Enter new Task" v-model="newTask" />
         <button type="submit">Submit</button>
     </form>
     <br>
@@ -34,12 +42,10 @@
         <td>
           <button id="del">Delete</button>
         </td>
-        </tr>
-        
-      </tr>
-      
+        </tr>        
+      </tr>      
     </table>
-    <h4 v-else>No Tasks for you!</h4>
+    <span v-else>No Tasks for you Today!</span>
 </template>
 
 <style scoped>
@@ -52,7 +58,7 @@
   }
 
   button{
-    font-size: 20px;
+    /* font-size: 20px; */
     color:cadetblue;
   }
 
@@ -61,6 +67,7 @@
   }
 
   #del{
+    margin: 2px;
     color: #fff;
     background-color: red;
   }
