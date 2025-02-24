@@ -15,6 +15,10 @@
           }
     };
 
+    const deleteTask = (index) => {
+          tasks.value.splice(index, 1);
+    };
+
 </script>
 <template>
     <h1>TODO Application</h1>
@@ -26,13 +30,11 @@
     <br>
     <table v-if="tasks.length !== 0" border="1">
       <tr>
-      <!-- <th>No.</th> -->
         <th>Task name</th>
         <th>Status</th>
         <th>Actions</th>
       </tr>
-      <tr v-for="(task, index) in tasks">
-        <!-- <td>{{ index }}</td> -->
+      <tr v-for="(task, index) in tasks" :key="task">
         <td>{{ task.name }}</td>
         <td>{{ task.status }}</td>
         <tr>
@@ -40,7 +42,7 @@
           <button id="cs">C:S</button>
         </td>
         <td>
-          <button id="del">Delete</button>
+          <button id="del" @click="deleteTask(index)">Delete</button>
         </td>
         </tr>        
       </tr>      
